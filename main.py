@@ -7,4 +7,5 @@ from shop.shop_customers import Customer
 my_food = Food()
 my_drink = Drink()
 my_item = Item()
-my_customer = Customer()
+my_customer = Customer("Lukas")
+print(my_customer._identifier)
