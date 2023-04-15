@@ -49,6 +49,13 @@ def fourthTask():
     c2.remove_item(1)
     print(c2.get_items())
 
+def fifthTask():
+    c1 = Customer("Jonas Jonaitis", [Food("Batonas", 2, 1.3), Drink("CocaCola", 3, 1.7)])
+    c1.export_to_json("./test.json")
+    c2 = Customer.import_from_json("./test.json")
+    print(c1.full_info())
+    print(c1.get_items())
+
 if __name__ == '__main__':
     while(1):
         print(f'[1] First task\n[2] Second task\n[3] Third task\n[4] Fourth task\n[5] Fifth task\n\n[0] Exit')
@@ -61,8 +68,8 @@ if __name__ == '__main__':
             thirdTask()
         elif userInput == 4:
             fourthTask()
-        # elif userInput == 5:
-        #     fifthTask()
+        elif userInput == 5:
+            fifthTask()
         else:
             exit(0)
 
