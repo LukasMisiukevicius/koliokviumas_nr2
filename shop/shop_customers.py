@@ -27,15 +27,17 @@ class Customer:
     def _to_dict(self):
         items = []
         for item in self._items:
-            items.append({
+            items.append(
+                {
                 "name": item._name,
                 "quantity": item._quantity,
                 "price": item._price,
                 "total_price": item._get_total_price(),
                 "full": item.full_info()
-            })
+                }
+            )
         return {
-            "name": self._name,
+            "cust_name": self._name,
             "identifier": self._id,
             "items": items
         }
@@ -52,7 +54,7 @@ class Customer:
         try:
             with open(path, "r") as file:
                 data = json.load(file)
-            new_name = data["name"]
+            new_name = data["cust_name"]
             items = []
             for item_data in data["items"]:
                 name = item_data["name"]
@@ -68,7 +70,7 @@ class Customer:
                 else:
                     item = Item(name, quantity, price)
                 items.append(item)
-            return cls(name, items)
+            return cls(new_name, items)
 
         except:
             print("Something went wrong(probably no file exists, need to check")
