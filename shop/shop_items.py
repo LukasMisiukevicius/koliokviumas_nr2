@@ -4,12 +4,15 @@ class Item:
         self._quantity = quantity
         self._price = price
 
+    # privati funkcija, skirta gauti pilną kainą
     def _get_total_price(self):
         return self._quantity * self._price
 
+    # funkcija, skirta išvesti pilną informaciją
     def full_info(self):
         return f"{self._name} {self._quantity} {self._price} {self._get_total_price()}"
 
+    # funkcija, skirta sudėti informaciją į dictionary
     def to_dict(self):
         return {
             "name": self._name,
@@ -31,4 +34,3 @@ class Food(Item):
 
     def full_info(self):
         return f"Maistas {super().full_info()}"
-

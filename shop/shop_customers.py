@@ -12,21 +12,23 @@ class Customer:
         self._id = Customer.identifier
         self._items = items
 
+    # funkcija, kuri eina per kiekvieną daiktą ir išveda jo full_info
     def get_items(self):
         return [item.full_info() for item in self._items]
 
+    # funkcija, kuri prideda daiktą prie sąrašo
     def add_item(self, item):
         self._items.append(item)
 
     def remove_item(self, item_index):
         try:
             self._items.remove(self._items[item_index])
-        except IndexError:
+        except IndexError: # jei daiktų nėra
             print("Error removing item")
 
     def _to_dict(self):
         items = []
-        for item in self._items:
+        for item in self._items: # eina per kiekvieną daiktą ir jį sudeda į sąrašą
             items.append(
                 {
                 "name": item._name,
@@ -36,7 +38,7 @@ class Customer:
                 "full": item.full_info()
                 }
             )
-        return {
+        return { # grąžina vardą, id ir daiktų sąrašą
             "cust_name": self._name,
             "identifier": self._id,
             "items": items
@@ -47,30 +49,30 @@ class Customer:
             print("Must provide json file")
         else:
             with open(path, "w") as file:
-                file.write(json.dumps(self._to_dict(), indent=4))
+                file.write(json.dumps(self._to_dict(), indent=4)) # kviečią funckiją to_dict ir tai ką ji gražiną įrašo į failą
 
     @classmethod
     def import_from_json(cls, path):
         try:
             with open(path, "r") as file:
-                data = json.load(file)
-            new_name = data["cust_name"]
+                data = json.load(file) # nuskaito failą
+            new_name = data["cust_name"] # gauna vartotojo vardą
             items = []
-            for item_data in data["items"]:
+            for item_data in data["items"]: # eina per kiekvieną daiktą
                 name = item_data["name"]
                 quantity = item_data["quantity"]
                 price = item_data["price"]
                 total_price = item_data["total_price"]
-                if "full" in item_data:
+                if "full" in item_data: # jei yra full price, tai reiškia kad yra ne vienas daiktas
                     item_type = item_data['full'].split()[0]
-                    if item_type == "Maistas":
+                    if item_type == "Maistas": # ieško maisto
                         item = Food(name, quantity, price)
-                    elif item_type == "Gerimas":
+                    elif item_type == "Gerimas": # ieško gėrimų
                         item = Drink(name, quantity, price)
                 else:
-                    item = Item(name, quantity, price)
-                items.append(item)
-            return cls(new_name, items)
+                    item = Item(name, quantity, price) # jei nėra sąrašo su daiktais reiškia vienas daiktas, kurį sukuria
+                items.append(item) # eina prie kito daikto
+            return cls(new_name, items) # sukuria customerį su daiktų sąrašu
 
         except:
             print("Something went wrong(probably no file exists, need to check")
