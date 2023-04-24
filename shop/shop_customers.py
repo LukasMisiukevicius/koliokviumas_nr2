@@ -63,7 +63,7 @@ class Customer:
                 quantity = item_data["quantity"]
                 price = item_data["price"]
                 total_price = item_data["total_price"]
-                item_type = item_data['full'].split()[0]
+                item_type = item_data['full'].split()[0] # [0] paima pirma 'full' elemento zodi (maistas/gerimai)
                 if item_type == "Maistas": # ieško maisto
                     item = Food(name, quantity, price)
                 elif item_type == "Gerimas": # ieško gėrimų
@@ -75,11 +75,11 @@ class Customer:
             print("Something went wrong. No such file exists...")
             exit(1)
 
-    @property # dekoratorius
+    @property
     def name(self):
         return self._name
 
-    @name.setter # dekoratorius
+    @name.setter # Ar sito tikrai reikia?????
     def name(self, value):
         self._name = value
 
