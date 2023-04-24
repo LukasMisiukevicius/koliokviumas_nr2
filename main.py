@@ -56,10 +56,10 @@ def fourthTask():
     print(c2.get_items())
 
 def fifthTask():
-    c1 = Customer("Jonas Jonaitis", [Food("Batonas", 2, 1.3), Drink("CocaCola", 3, 1.7)])
-    c1.export_to_json("./c1.json")
-    print(c1.full_info())
-    print(c1.get_items())
+    # c1 = Customer("Jonas Jonaitis", [Food("Batonas", 2, 1.3), Drink("CocaCola", 3, 1.7)])
+    # c1.export_to_json("./c1.json")
+    # print(c1.full_info())
+    # print(c1.get_items())
 
     c2 = Customer.import_from_json("./c1.json")
     print(c2.full_info())

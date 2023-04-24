@@ -56,6 +56,10 @@ class Customer:
         try:
             with open(path, "r") as file:
                 data = json.load(file) # nuskaito failą
+        except:
+            print("No such file exists or file is empty")
+            exit(1)
+        try:
             new_name = data["cust_name"] # gauna vartotojo vardą
             items = []
             for item_data in data["items"]: # eina per kiekvieną daiktą
@@ -69,9 +73,8 @@ class Customer:
                     item = Drink(name, quantity, price)
                 items.append(item) # prideda daiktą prie listo
             return cls(new_name, items) # sukuria customerį su daiktų sąrašu
-
         except:
-            print("Something went wrong. No such file exists...")
+            print("Json format is not recognised by system")
             exit(1)
 
     @property
