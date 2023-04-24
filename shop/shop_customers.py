@@ -72,7 +72,8 @@ class Customer:
             return cls(new_name, items) # sukuria customerį su daiktų sąrašu
 
         except:
-            print("Something went wrong(probably no file exists, need to check")
+            print("Something went wrong. No such file exists...")
+            exit(1)
 
     @property # dekoratorius
     def name(self):

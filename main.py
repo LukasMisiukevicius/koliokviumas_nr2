@@ -59,24 +59,22 @@ def fifthTask():
     c1 = Customer("Jonas Jonaitis", [Food("Batonas", 2, 1.3), Drink("CocaCola", 3, 1.7)])
     c1.export_to_json("./test.json")
 
-    c2 = Customer.import_from_json("./test.json")
+    c2 = Customer.import_from_json("./testhgshdgs.json")
     print(c1.full_info())
     print(c1.get_items())
     print(c2.full_info())
     print(c2.get_items())
     print(Customer.identifier)
 
-def sixthTask():
-    c1 = Customer("Lukas", [Food("Batonas", 2, 1.3), Drink("CocaCola", 3, 1.7)])
-    c2 = Customer("Jonas")
-    c1.export_to_json("./test.json")
-    c3 = Customer.import_from_json("./test.json")
-    print(c3.get_items())
-
 if __name__ == '__main__':
     while(1):
         print(f'[1] First task\n[2] Second task\n[3] Third task\n[4] Fourth task\n[5] Fifth task\n\n[0] Exit')
-        userInput = int(input('Enter your choice: '))
+        try:
+            userInput = int(input('Enter your choice: '))
+        except:
+            print("Something went wrong...")
+            exit(1)
+
         if userInput == 1:
             firstTask()
         elif userInput == 2:
@@ -87,8 +85,6 @@ if __name__ == '__main__':
             fourthTask()
         elif userInput == 5:
             fifthTask()
-        elif userInput == 6:
-            sixthTask()
         else:
             exit(0)
 
