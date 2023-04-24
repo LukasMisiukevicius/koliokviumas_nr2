@@ -62,13 +62,12 @@ class Customer:
                 name = item_data["name"]
                 quantity = item_data["quantity"]
                 price = item_data["price"]
-                total_price = item_data["total_price"]
                 item_type = item_data['full'].split()[0] # [0] paima pirma 'full' elemento zodi (maistas/gerimai)
                 if item_type == "Maistas": # ieško maisto
                     item = Food(name, quantity, price)
                 elif item_type == "Gerimas": # ieško gėrimų
                     item = Drink(name, quantity, price)
-                items.append(item) # eina prie kito daikto
+                items.append(item) # prideda daiktą prie listo
             return cls(new_name, items) # sukuria customerį su daiktų sąrašu
 
         except:
@@ -79,9 +78,10 @@ class Customer:
     def name(self):
         return self._name
 
-    @name.setter # Ar sito tikrai reikia?????
-    def name(self, value):
-        self._name = value
+    # @name.setter # Ar sito tikrai reikia?????
+    # def name(self, value):
+    #     self._name = value
+    # trinam
 
     def get_identifier(self):
         return self._id
