@@ -5,11 +5,17 @@ from shop.shop_items import Item
 from shop.shop_customers import Customer
 
 def firstTask():
-    my_customer = Customer("Lukas")
-    my_customer2 = Customer("Jonas")
+    c1 = Customer("Jonas Jonaitis")
+    c2 = Customer("Petras Petraitis")
+    c3 = Customer("Lukas Lukauskas")
     print(Customer.identifier)
-    print(my_customer2.get_identifier())
-    print(my_customer.full_info())
+    print(c1.get_identifier())
+    print(c2.get_identifier())
+    print(c3.get_identifier())
+    print(Customer.identifier)
+    print(c1.full_info())
+    print(c2.full_info())
+    print(c3.full_info())
 
 def secondTask():
     i1 = Item("Morkos")
@@ -50,20 +56,22 @@ def fourthTask():
     print(c2.get_items())
 
 def fifthTask():
-    # c1 = Customer("Jonas Jonaitis", [Food("Batonas", 2, 1.3), Drink("CocaCola", 3, 1.7)])
-    #c1.export_to_json("./test.json")
+    c1 = Customer("Jonas Jonaitis", [Food("Batonas", 2, 1.3), Drink("CocaCola", 3, 1.7)])
+    c1.export_to_json("./test.json")
+
     c2 = Customer.import_from_json("./test.json")
-    # print(c1.full_info())
-    # print(c1.get_items())
+    print(c1.full_info())
+    print(c1.get_items())
     print(c2.full_info())
     print(c2.get_items())
+    print(Customer.identifier)
 
-# def sixthTask():
-#     c1 = Customer("Lukas")
-#     c2 = Customer("Jonas")
-#     c1.export_to_json("./test.json")
-#     # c1 = Customer.import_from_json("./test.json")
-#     print(c1.full_info())
+def sixthTask():
+    c1 = Customer("Lukas", [Food("Batonas", 2, 1.3), Drink("CocaCola", 3, 1.7)])
+    c2 = Customer("Jonas")
+    c1.export_to_json("./test.json")
+    c3 = Customer.import_from_json("./test.json")
+    print(c3.get_items())
 
 if __name__ == '__main__':
     while(1):
@@ -79,6 +87,8 @@ if __name__ == '__main__':
             fourthTask()
         elif userInput == 5:
             fifthTask()
+        elif userInput == 6:
+            sixthTask()
         else:
             exit(0)
 

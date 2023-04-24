@@ -63,25 +63,22 @@ class Customer:
                 quantity = item_data["quantity"]
                 price = item_data["price"]
                 total_price = item_data["total_price"]
-                if "full" in item_data: # jei yra full price, tai reiškia kad yra ne vienas daiktas
-                    item_type = item_data['full'].split()[0]
-                    if item_type == "Maistas": # ieško maisto
-                        item = Food(name, quantity, price)
-                    elif item_type == "Gerimas": # ieško gėrimų
-                        item = Drink(name, quantity, price)
-                else:
-                    item = Item(name, quantity, price) # jei nėra sąrašo su daiktais reiškia vienas daiktas, kurį sukuria
+                item_type = item_data['full'].split()[0]
+                if item_type == "Maistas": # ieško maisto
+                    item = Food(name, quantity, price)
+                elif item_type == "Gerimas": # ieško gėrimų
+                    item = Drink(name, quantity, price)
                 items.append(item) # eina prie kito daikto
             return cls(new_name, items) # sukuria customerį su daiktų sąrašu
 
         except:
             print("Something went wrong(probably no file exists, need to check")
 
-    @property
+    @property # dekoratorius
     def name(self):
         return self._name
 
-    @name.setter
+    @name.setter # dekoratorius
     def name(self, value):
         self._name = value
 
